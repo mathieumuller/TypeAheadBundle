@@ -27,12 +27,14 @@ And don't forget to enable it in you kernel
 ## FILES TO INCLUDE
 
 In your base.html.twig file (or equivalent), just include
-* default stylesheet (or you can create your own) :
+default stylesheet (or you can create your own) :
+
     {% stylesheets 'bundles/matmtypeahead/css/typeahead.css' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
     {% endstylesheets %}
 
-* typeahead bundle js files :
+typeahead bundle js files :
+
     {% javascripts "@MatMTypeAheadBundle/Resources/public/js/TypeAhead/*" %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -40,6 +42,7 @@ In your base.html.twig file (or equivalent), just include
 ## CONFIGURATION
 
 In your config.yml file just add these lines
+
     # app/config/config.yml
     twig:
         form:
@@ -56,6 +59,7 @@ In your controller action request your entity repository as you need, then call 
     $list = $this->get("mm.dataset_maker")->makeTypeAheadDataset($results, "real_name", "display_name");
 
 Then pass the list to your template
+
     return $this->render(
         'MyBundle:MyController:my_template.html.twig',
         array(
@@ -65,6 +69,7 @@ Then pass the list to your template
     );
 
 And finally create a JS variable with it in your template
+
     {% block javascripts %}
         <script>
              var list = {{ list | json_encode | raw }};
@@ -72,6 +77,7 @@ And finally create a JS variable with it in your template
     {% endblock %}
 
 Now all you need to do is to call the typeahead input in your form buider class
+
     $builder->add(
         'myProperty',
         'typeahead',
