@@ -1,0 +1,30 @@
+{
+    "name" : "MatM/typeaheadbundle",
+    "description" : "This bundle provides a typeahead form input to your symfony forms based on Twitter Typeahead",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "Mathieu Muller",
+        "email" : "mathieu.1984@live.fr"
+    }],
+    "keywords" : [
+        "typeahead autocomplete symfony form twitter"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-0" : {
+            "MatM\\TypeAheadBundle" : ""
+        }
+    },
+    "target-dir" : "MatM/Bundle/TypeAheadBundle",
+    "repositories" : [{
+    }],
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "1.0"
+        }
+    }
+}

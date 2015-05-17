@@ -1,4 +1,9 @@
 services:
-#    mat_m_type_ahead.example:
-#        class: MatM\Bundle\TypeAheadBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    matm.typeahead:
+        class: MatM\Bundle\TypeAheadBundle\Form\Type\TypeAheadType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: typeahead }
+
+    matm.dataset_maker:
+        class: MatM\Bundle\TypeAheadBundle\Services\TypeAheadManager
