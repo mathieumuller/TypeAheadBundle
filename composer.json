@@ -1,5 +1,5 @@
 {
-    "name" : "MatM/typeaheadbundle",
+    "name" : "matm/typeaheadbundle",
     "description" : "This bundle provides a typeahead form input to your symfony forms based on Twitter Typeahead",
     "type" : "symfony-bundle",
     "authors" : [{
@@ -13,6 +13,7 @@
         "MIT"
     ],
     "require" : {
+        "jquery/jquery":  "1.11.*"
     },
     "autoload" : {
         "psr-0" : {
