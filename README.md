@@ -8,71 +8,71 @@ This bundle provides a typeahead input in your symfony forms based on **Twitter 
 
 With composer, add the following line to your composer.json
 
-    `{
+    {
         "require": {
             "matm/typeaheadbundle": "dev-master"
         }
-    }`
+    }
 
 And don't forget to enable it in you kernel
 
-    `// app/AppKernel.php
+    // app/AppKernel.php
     public function registerBundles()
     {
         $bundles = array(
             //...
             new MatM\Bundle\TypeAheadBundle\MatMTypeAheadBundle(),
-            //...`
+            //...
 
 ## FILES TO INCLUDE
 
 In your base.html.twig file (or equivalent), just include
 * default stylesheet (or you can create your own) :
-    `{% stylesheets 'bundles/matmtypeahead/css/typeahead.css' %}
+    {% stylesheets 'bundles/matmtypeahead/css/typeahead.css' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
-    {% endstylesheets %}`
+    {% endstylesheets %}
 
 * typeahead bundle js files :
-    `{% javascripts "@MatMTypeAheadBundle/Resources/public/js/TypeAhead/*" %}
+    {% javascripts "@MatMTypeAheadBundle/Resources/public/js/TypeAhead/*" %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}`
+    {% endjavascripts %}
 
 ## CONFIGURATION
 
 In your config.yml file just add these lines
-    `# app/config/config.yml
+    # app/config/config.yml
     twig:
         form:
             resources:
-                - 'MatMTypeAheadBundle:Form:typeahead-form-theme.html.twig'`
+                - 'MatMTypeAheadBundle:Form:typeahead-form-theme.html.twig'
 
 ## USAGE
 
 In your controller action request your entity repository as you need, then call typeahead dataset maker with your results and choose which properties of your entity you want to use for the search and the display
 
-    `// $results = the results of your own query
+    // $results = the results of your own query
     // "real_name" = the property of your target entity you want to use for the search
     // "display_name" = the property of your target entity you want to display
-    $list = $this->get("mm.dataset_maker")->makeTypeAheadDataset($results, "real_name", "display_name");`
+    $list = $this->get("mm.dataset_maker")->makeTypeAheadDataset($results, "real_name", "display_name");
 
 Then pass the list to your template
-    `return $this->render(
+    return $this->render(
         'MyBundle:MyController:my_template.html.twig',
         array(
             'form' => $form->createView(),
             'list' => $list
         )
-    );`
+    );
 
 And finally create a JS variable with it in your template
-    `{% block javascripts %}
+    {% block javascripts %}
         <script>
              var list = {{ list | json_encode | raw }};
         </script>
-    {% endblock %}`
+    {% endblock %}
 
 Now all you need to do is to call the typeahead input in your form buider class
-    `$builder->add(
+    $builder->add(
         'myProperty',
         'typeahead',
         array(
@@ -80,7 +80,7 @@ Now all you need to do is to call the typeahead input in your form buider class
             'label'    => 'my_label',
             'attr' => array("display" => "name"), //this one is needed to transform the displayed value in case of hydrated form
         )
-    )`
+    )
 
 Et voilà!
 
