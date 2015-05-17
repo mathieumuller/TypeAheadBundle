@@ -1,0 +1,3 @@
+mat_m_type_ahead_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MatMTypeAheadBundle:Default:index }
