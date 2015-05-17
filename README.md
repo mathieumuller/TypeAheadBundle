@@ -8,40 +8,40 @@ This bundle provides a typeahead input in your symfony forms based on **Twitter 
 
 With composer, add the following line to your composer.json
 
-	`{
-	    "require": {
-	        "matm/typeaheadbundle": "dev-master"
-	    }
-	}`
+    `{
+        "require": {
+            "matm/typeaheadbundle": "dev-master"
+        }
+    }`
 
 And don't forget to enable it in you kernel
 
-	`// app/AppKernel.php
-	public function registerBundles()
-	{
-	    $bundles = array(
-	        //...
-	        new MatM\Bundle\TypeAheadBundle\MatMTypeAheadBundle(),
-	        //...`
+    `// app/AppKernel.php
+    public function registerBundles()
+    {
+        $bundles = array(
+            //...
+            new MatM\Bundle\TypeAheadBundle\MatMTypeAheadBundle(),
+            //...`
 
 ## FILES TO INCLUDE
 
 In your base.html.twig file (or equivalent), just include
 * default stylesheet (or you can create your own) :
-	`{% stylesheets 'bundles/matmtypeahead/css/typeahead.css' %}
+    `{% stylesheets 'bundles/matmtypeahead/css/typeahead.css' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
     {% endstylesheets %}`
 
 * typeahead bundle js files :
-	`{% javascripts "@MatMTypeAheadBundle/Resources/public/js/TypeAhead/*" %}
+    `{% javascripts "@MatMTypeAheadBundle/Resources/public/js/TypeAhead/*" %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}`
 
 ## CONFIGURATION
 
 In your config.yml file just add these lines
-	`# app/config/config.yml
-	twig:
+    `# app/config/config.yml
+    twig:
         form:
             resources:
                 - 'MatMTypeAheadBundle:Form:typeahead-form-theme.html.twig'`
@@ -65,14 +65,14 @@ Then pass the list to your template
     );`
 
 And finally create a JS variable with it in your template
-	`{% block javascripts %}
-		<script>
-			 var list = {{ list | json_encode | raw }};
-		</script>
-	{% endblock %}`
+    `{% block javascripts %}
+        <script>
+             var list = {{ list | json_encode | raw }};
+        </script>
+    {% endblock %}`
 
 Now all you need to do is to call the typeahead input in your form buider class
-	`$builder->add(
+    `$builder->add(
         'myProperty',
         'typeahead',
         array(
