@@ -75,6 +75,15 @@ And finally create a JS variable with it in your template
              var list = {{ list | json_encode | raw }};
         </script>
     {% endblock %}
+    
+In a JS file declare a document ready : 
+    
+    //list : your data list
+    //dataset_name : choose a name for your dataset
+    //#my_form_input_id : the id of the form input 
+    $(document).ready(function(){
+	    TypeAheadBundle.typeAheadProcessor(list, '.typeahead', 'dataset_name', "#my_form_input_id");
+    });
 
 Now all you need to do is to call the typeahead input in your form buider class
 
