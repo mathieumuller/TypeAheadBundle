@@ -2,8 +2,6 @@
 
 This bundle provides a typeahead input in your symfony forms based on **Twitter Typeahead**.
 
-**THIS VERSION IS NOT STABLE YET BE PATIENT**
-
 ## INSTALLATION
 
 With composer, add the following line to your composer.json
