@@ -17,7 +17,7 @@
     },
     "autoload" : {
         "psr-0" : {
-            "MatM\\TypeAheadBundle" : ""
+            "MatM\\Bundle\\TypeAheadBundle" : ""
         }
     },
     "target-dir" : "MatM/Bundle/TypeAheadBundle",
