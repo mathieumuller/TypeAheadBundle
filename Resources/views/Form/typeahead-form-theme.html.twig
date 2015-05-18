@@ -9,7 +9,7 @@
 	        <input type="text" {{ block('widget_attributes') }} placeholder='{{ "sf_forms.empty_values.date_placeholder"|trans({}, "CoreBundle")}}'
 	        {% if value is not empty %}value="{{ attribute(value, attr.display) }}" {% endif %}/>
 	        <span class="input-group-addon tt-eraser">
-                <span class="fa fa-eraser"></span>
+                <span class="glyphicon glyphicon-erase"></span>
             </span>
         </div>
     {% endspaceless %}
