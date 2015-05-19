@@ -5,7 +5,7 @@ services:
 
     matm.typeahead_type:
         class: MatM\Bundle\TypeAheadBundle\Form\Type\TypeAheadType
-        arguments: ["matm.typeahead_transformer"]
+        arguments: ["@matm.typeahead_transformer"]
         tags:
             - { name: form.type, alias: typeahead }
 

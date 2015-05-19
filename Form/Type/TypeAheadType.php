@@ -3,7 +3,6 @@ namespace MatM\Bundle\TypeAheadBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use MatM\Bundle\TypeAheadBundle\Form\DataTransformer\TypeAheadTransformer;
 
@@ -37,7 +36,7 @@ class TypeAheadType extends AbstractType
 
     public function getParent()
     {
-        return 'entity';
+        return 'hidden';
     }
 
     public function getName()
