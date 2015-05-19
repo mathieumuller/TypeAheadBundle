@@ -1,9 +1,18 @@
+parameters:
+	typeahead.form_type_class: "MatM/Bundle/TypeAheadBundle/Form/Type/TypeAheadType"
+	typeahead.transformer_class: "MatM/Bundle/TypeAheadBundle/Form/Type/TypeAheadTransformer"
+	typeahead.dataset_maker_class: "MatM/Bundle/TypeAheadBundle/Services/TypeAheadDataBuilder"
+
 services:
-    matm.typeahead:
-        class: MatM\Bundle\TypeAheadBundle\Form\Type\TypeAheadType
+	matm.typeahead_transformer:
+        class: %typeahead.transformer_class%
         arguments: ["@doctrine.orm.entity_manager"]
+
+    matm.typeahead_type:
+        class: %typeahead.form_type_class%
+        arguments: ["matm.typeahead_transformer"]
         tags:
             - { name: form.type, alias: typeahead }
 
     matm.dataset_maker:
-        class: MatM\Bundle\TypeAheadBundle\Services\TypeAheadManager
+        class: %typeahead.dataset_maker_class%
