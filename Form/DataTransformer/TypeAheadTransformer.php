@@ -7,42 +7,61 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class TypeAheadTransformer implements DataTransformerInterface
 {
+    private $class;
+
+    /**
+     * Gets the value of class.
+     *
+     * @return mixed
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
+
+    /**
+     * Sets the value of class.
+     *
+     * @param mixed $class the class
+     *
+     * @return self
+     */
+    public function setClass($class)
+    {
+        $this->class = $class;
+
+        return $this;
+    }
+
     /**
      * @var ObjectManager
      */
     private $om;
-    private $objectClass;
-
     /**
      * @param ObjectManager $om
      */
-    public function __construct(ObjectManager $om, $objectClass)
+    public function __construct(ObjectManager $om)
     {
         $this->om = $om;
-        $this->objectClass = $objectClass;
     }
 
     /**
-     * Transforms an object (type) to an int (id).
+     * Transforms an object (entity) to an int (id).
      *
-     * @param  Type|null $type
+     * @param  Entity|null $entity
      * @return int
      */
-    public function transform($type)
+    public function transform($entity)
     {
-        if (null === $type) {
-            return "";
-        }
-
-        return $type;
+        return null === $entity ? "" : $entity;
     }
 
     /**
-     * Transforms an int (id) to an object (type).
+     * Transforms an int (id) to an object (entity).
      *
      * @param  int $id
-     * @return Type|null
-     * @throws TransformationFailedException if object (type) is not found.
+     * @return Entity|null
+     * @throws TransformationFailedException if object (entity) is not found.
      */
     public function reverseTransform($id)
     {
@@ -50,18 +69,17 @@ class TypeAheadTransformer implements DataTransformerInterface
             return null;
         }
 
-        $type = $this->om
-            ->getRepository($this->objectClass)
-            ->find($id)
-        ;
+        $entity = $this->om
+            ->getRepository($this->class)
+            ->find($id);
 
-        if (null === $type) {
+        if (null === $entity) {
             throw new TransformationFailedException(sprintf(
-                "An error occured",
+                "No result found for id %d",
                 $id
             ));
         }
 
-        return $type;
+        return $entity;
     }
 }
