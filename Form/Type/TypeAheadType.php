@@ -10,22 +10,22 @@ use MatM\Bundle\TypeAheadBundle\Form\DataTransformer\TypeAheadTransformer;
 class TypeAheadType extends AbstractType
 {
     /**
-     * @var ObjectManager
+     * @var TypeAheadTransformer
      */
-    private $om;
+    private $transformer;
 
     /**
-     * @param ObjectManager $om
+     * @param TypeAheadTransformer $transformer
      */
-    public function __construct(ObjectManager $om)
+    public function __construct(TypeAheadTransformer $transformer)
     {
-        $this->om = $om;
+        $this->transformer = $transformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transformer = new TypeAheadTransformer($this->om, $options['data_class']);
-        $builder->addModelTransformer($transformer);
+        $this->transformer->setClass($options['data_class']);
+        $builder->addModelTransformer($this->transformer);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -37,7 +37,7 @@ class TypeAheadType extends AbstractType
 
     public function getParent()
     {
-        return 'hidden';
+        return 'entity';
     }
 
     public function getName()
