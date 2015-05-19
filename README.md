@@ -52,9 +52,9 @@ In your config.yml file just add these lines
 In your controller action request your entity repository as you need, then call typeahead dataset maker with your results and choose which properties of your entity you want to use for the search and the display
 
     // $results = the results of your own query
-    // "real_name" = the property of your target entity you want to use for the search
-    // "display_name" = the property of your target entity you want to display
-    $list = $this->get("matm.dataset_maker")->makeTypeAheadDataset($results, "real_name", "display_name");
+    // "search_method" = the method of your target entity you want to use for the search
+    // "display_method" = the method of your target entity you want to use for the display
+    $list = $this->get("matm.dataset_maker")->makeTypeAheadDataset($results, "search_method", "display_method");
 
 Then pass the list to your template
 
@@ -73,12 +73,12 @@ And finally create a JS variable with it in your template
              var list = {{ list | json_encode | raw }};
         </script>
     {% endblock %}
-    
-In a JS file declare a document ready : 
-    
+
+In a JS file declare a document ready :
+
     //list : your data list
     //dataset_name : choose a name for your dataset
-    //#my_form_input_id : the id of the form input 
+    //#my_form_input_id : the id of the form input
     $(document).ready(function(){
 	    TypeAheadBundle.typeAheadProcessor(list, '.typeahead', 'dataset_name', "#my_form_input_id");
     });
@@ -91,7 +91,7 @@ Now all you need to do is to call the typeahead input in your form buider class
         array(
             "data_class" => 'Path\ToMy\Bundle\Entity\MyEntity',
             'label'    => 'my_label',
-            'attr' => array("display" => "name"), //this one is needed to transform the displayed value in case of hydrated form
+            'attr' => array("display" => "name"), //the property to display in case of hydrated form
         )
     )
 
