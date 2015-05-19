@@ -54,7 +54,7 @@ In your controller action request your entity repository as you need, then call 
     // $results = the results of your own query
     // "real_name" = the property of your target entity you want to use for the search
     // "display_name" = the property of your target entity you want to display
-    $list = $this->get("mm.dataset_maker")->makeTypeAheadDataset($results, "real_name", "display_name");
+    $list = $this->get("matm.dataset_maker")->makeTypeAheadDataset($results, "real_name", "display_name");
 
 Then pass the list to your template
 
