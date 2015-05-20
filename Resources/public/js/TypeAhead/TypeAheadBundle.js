@@ -33,6 +33,7 @@ var TypeAheadBundle = {
             e.preventDefault();
             $(this).parent().find("input[type=text]").val("").removeClass("typeAheadError").removeClass("typeAheadOk");
             $(this).parent().find("input[type=hidden]").val("");
+            $(value_input).trigger("typeahead_change");
         });
 
         $(display_input).typeahead({
@@ -47,6 +48,7 @@ var TypeAheadBundle = {
         ).bind("typeahead:selected", function(obj, datum, name) {
             //return id in an input hidden
             $(value_input).val(datum.value);
+            $(value_input).trigger("typeahead_change");
             $(display_input).removeClass("typeAheadError");
             $(display_input).addClass("typeAheadOk");
 
@@ -57,6 +59,7 @@ var TypeAheadBundle = {
         }).bind("typeahead:open", function(){
             // reinitialize the input hidden
             $(value_input).val("");
+            $(value_input).trigger("typeahead_change");
             $(display_input).removeClass("typeAheadOk");
         });
     }
