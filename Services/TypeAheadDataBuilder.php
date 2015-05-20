@@ -2,8 +2,6 @@
 
 namespace MatM\Bundle\TypeAheadBundle\Services;
 
-Symfony\Component\Debug\Exception;
-
 class TypeAheadDataBuilder
 {
     public function makeTypeAheadDataset($results, $displayMethod, $searchMethod)
@@ -19,6 +17,12 @@ class TypeAheadDataBuilder
                     "selected_value"  => $result->getId(),
                     "search_value"    => $result->{$searchMethod}()
                 );
+            } else {
+                foreach (array($displayMethod, $searchMethod) as $method) {
+                    if (!$reflectionClass->hasMethod($method)) {
+                        throw new \Exception("Method ".$method."() was not found in class ".get_class($result));
+                    }
+                }
             }
         }
 
