@@ -21,8 +21,21 @@ var TypeAheadBundle = {
     },
 
     typeAheadProcessor :function(dataset, elt, dataset_name, value_input, onSelectFunction) {
-        var display_input = $(value_input).closest(elt);
-        $(elt).typeahead({
+        var display_input = $(value_input).parent().find(elt);
+        
+        $(display_input).on("keyup", function(){
+            if (! $(value_input).val()) {
+                $(display_input).addClass("typeAheadError");
+            }
+        });
+
+        $(".tt-eraser").on("click", function(e){
+            e.preventDefault();
+            $(this).parent().find("input[type=text]").val("").removeClass("typeAheadError").removeClass("typeAheadOk");
+            $(this).parent().find("input[type=hidden]").val("");
+        });
+
+        $(display_input).typeahead({
                 hint: true,
                 highlight: true,
                 minLength: 1
@@ -35,31 +48,17 @@ var TypeAheadBundle = {
         ).bind("typeahead:selected", function(obj, datum, name) {
             //return id in an input hidden
             $(value_input).val(datum.value);
-            $(value_input).trigger("change_custom");
-            $(elt).removeClass("typeAheadError");
-            $(elt).addClass("typeAheadOk");
+            $(display_input).removeClass("typeAheadError");
+            $(display_input).addClass("typeAheadOk");
 
             if (typeof(onSelectFunction) == "function") {
                 onSelectFunction();
             }
 
-        }).bind("typeahead:opened", function(){
+        }).bind("typeahead:open", function(){
             // reinitialize the input hidden
-            $(value_input).val(null);
-            $(value_input).trigger("change_custom");
-            $(elt).removeClass("typeAheadOk");
-        });
-
-        $(elt).on("keyup", function(){
-            if  (!$(value_input).val()) {
-                $(elt).addClass("typeAheadError");
-            }
-        });
-
-        $(".tt-eraser").on("click", function(e){
-            e.preventDefault();
-            $(this).parent().find("input[type=text]").val("").removeClass("typeAheadError").removeClass("typeAheadOk");
-            $(this).parent().find("input[type=hidden]").val("");
+            $(value_input).val("");
+            $(display_input).removeClass("typeAheadOk");
         });
     }
 };
