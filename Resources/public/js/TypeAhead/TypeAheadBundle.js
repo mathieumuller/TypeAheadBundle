@@ -20,9 +20,9 @@ var TypeAheadBundle = {
         };
     },
 
-    typeAheadProcessor :function(dataset, elt, dataset_name, value_input, onSelectFunction) {
-        var display_input = $(value_input).parent().find(elt);
-        
+    typeAheadProcessor :function(dataset, value_input, onSelectFunction) {
+        var display_input = $(value_input).parent().find(".typeahead");
+
         $(display_input).on("keyup", function(){
             if (! $(value_input).val()) {
                 $(display_input).addClass("typeAheadError");
@@ -41,7 +41,6 @@ var TypeAheadBundle = {
                 minLength: 1
             },
             {
-                name:       dataset_name,
                 displayKey: 'displayed',
                 source:     this.substringMatcher(dataset)
             }
