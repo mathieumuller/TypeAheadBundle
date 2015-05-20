@@ -21,7 +21,7 @@ And don't forget to enable it in you kernel
             //...
             new MatM\Bundle\TypeAheadBundle\MatMTypeAheadBundle(),
             //...
-            
+
 ## CONFIGURATION
 
 In your config.yml file just add these lines
@@ -38,7 +38,7 @@ In your config.yml file just add these lines
             cdnjs:
                 base_urls:
                     http: ['https://cdnjs.cloudflare.com/ajax/libs/']
-                
+
 ## FILES TO INCLUDE
 
 In your base.html.twig file (or equivalent), just include
@@ -89,7 +89,7 @@ In a JS file declare a document ready :
     //#my_form_input_id : the id of the form input
     // onSelectFunction : not mandatory->the function you wish to execute on value selection
     $(document).ready(function(){
-	    TypeAheadBundle.typeAheadProcessor(list, '.typeahead', 'dataset_name', "#my_form_input_id", onSelectFunction);
+	    TypeAheadBundle.typeAheadProcessor(list, "#my_form_input_id", onSelectFunction);
     });
 
 Now all you need to do is to call the typeahead input in your form buider class
@@ -103,6 +103,10 @@ Now all you need to do is to call the typeahead input in your form buider class
             'attr' => array("display" => "name"), //the property to display in case of hydrated form
         )
     )
+
+You can also use the widget even if you are not using it in a symfony form including it in your twig template
+
+    {% include "MatMTypeAheadBundle::matm_typeahead.html.twig" with {id: "choose_an_id", placeholder: 'choose_a_placeholder')} %}
 
 Et voilà!
 
