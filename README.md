@@ -21,7 +21,24 @@ And don't forget to enable it in you kernel
             //...
             new MatM\Bundle\TypeAheadBundle\MatMTypeAheadBundle(),
             //...
+            
+## CONFIGURATION
 
+In your config.yml file just add these lines
+
+    # app/config/config.yml
+    twig:
+        form:
+            resources:
+                - 'MatMTypeAheadBundle:Form:typeahead-form-theme.html.twig'
+    ...
+    framework:
+        templating:
+            packages:
+            cdnjs:
+                base_urls:
+                    http: ['https://cdnjs.cloudflare.com/ajax/libs/']
+                
 ## FILES TO INCLUDE
 
 In your base.html.twig file (or equivalent), just include
@@ -33,19 +50,10 @@ default stylesheet (or you can create your own) :
 
 typeahead bundle js files :
 
-    {% javascripts "@MatMTypeAheadBundle/Resources/public/js/TypeAhead/*" %}
+    <script src="{{ asset('typeahead.js/0.11.1/typeahead.bundle.js', 'cdnjs') }}"></script>
+    {% javascripts "@MatMTypeAheadBundle/Resources/public/js/TypeAhead/TypeAheadBundle.js" %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-## CONFIGURATION
-
-In your config.yml file just add these lines
-
-    # app/config/config.yml
-    twig:
-        form:
-            resources:
-                - 'MatMTypeAheadBundle:Form:typeahead-form-theme.html.twig'
 
 ## USAGE
 
@@ -79,8 +87,9 @@ In a JS file declare a document ready :
     //list : your data list
     //dataset_name : choose a name for your dataset
     //#my_form_input_id : the id of the form input
+    // onSelectFunction : not mandatory->the function you wish to execute on value selection
     $(document).ready(function(){
-	    TypeAheadBundle.typeAheadProcessor(list, '.typeahead', 'dataset_name', "#my_form_input_id");
+	    TypeAheadBundle.typeAheadProcessor(list, '.typeahead', 'dataset_name', "#my_form_input_id", onSelectFunction);
     });
 
 Now all you need to do is to call the typeahead input in your form buider class
