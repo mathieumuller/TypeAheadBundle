@@ -19,8 +19,6 @@ class TypeAheadDataBuilder
                     "selected_value"  => $result->getId(),
                     "search_value"    => $result->{$searchMethod}()
                 );
-            } else {
-                throw new UndefinedMethodException();
             }
         }
 
