@@ -6,8 +6,11 @@
 	        {% set attr = attr|merge({'class': ((attr.class|default('') ~ ' typeahead form-control')|trim)}) %}
 	        {% set  id = id ~ "_typeahead" %}
 	        {% set  full_name = "typeahead_" ~ full_name  %}
-	        <input type="text" {{ block('widget_attributes') }} placeholder='{{ "sf_forms.empty_values.date_placeholder"|trans({}, "CoreBundle")}}'
-	        {% if value is not empty %}value="{{ attribute(value, attr.display) }}" {% endif %}/>
+	        <input type="text" {{ block('widget_attributes') }} 
+	            {% if value is not empty %}
+	                value="{{ attribute(value, attr.display) }}" 
+	            {% endif %}
+                />
 	        <span class="input-group-addon tt-eraser">
                 <span class="glyphicon glyphicon-erase"></span>
             </span>
