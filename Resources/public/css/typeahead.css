@@ -103,3 +103,11 @@
 .typeAheadError {
 	border: 2px red solid;
 }
+
+.rtl-support .tt-menu {
+  text-align: right;
+}
+
+.rtl-support .typeahead {
+  direction: RTL;
+}
