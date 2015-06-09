@@ -71,6 +71,3 @@ var TypeAheadBundle = {
     }
 };
 
-$(document).ready(function(){
-    $(".tt-eraser").css("height", $(".typeahead").css("height"));
-})
