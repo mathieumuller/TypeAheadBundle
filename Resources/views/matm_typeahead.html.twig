@@ -1,4 +1,4 @@
-{% if rtl is defined %}
+{% if rtl is defined and rtl is not empty %}
     <div class="rtl-support">
 {% endif %}
 <div class="input-group input-group-sm">
@@ -8,6 +8,6 @@
 	</span>
 	<input type="hidden" id="{{ id }}" name="{{ id }}" value=""/>
 </div>
-{% if rtl is defined %}
+{% if rtl is defined and rtl is not empty %}
     </div>
 {% endif %}
