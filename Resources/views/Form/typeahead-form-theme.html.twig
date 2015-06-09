@@ -1,7 +1,7 @@
 <!-- AUTOCOMPLETE -->
 {% block typeahead_widget %}
     {% spaceless %}
-    	{% if attr.rtl is defined %}
+    	{% if attr.rtl is defined and attr.rtl is not empty %}
     	    <div class="rtl-support">
     	{% endif %}
 	<div class="input-group">
@@ -18,7 +18,7 @@
         		<span class="glyphicon glyphicon-erase"></span>
     		</span>
         </div>
-        {% if attr.rtl is defined %}
+        {% if attr.rtl is defined and attr.rtl is not empty %}
     	    </div>
     	{% endif %}
     {% endspaceless %}
