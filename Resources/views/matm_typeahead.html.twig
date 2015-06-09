@@ -1,3 +1,6 @@
+{% if rtl is defined %}
+    <div class="rtl-support">
+{% endif %}
 <div class="input-group input-group-sm">
 	<input class="typeahead form-control" type="text" placeholder="{{ placeholder }}">
 	<span class="input-group-addon btn btn-default tt-eraser">
@@ -5,3 +8,6 @@
 	</span>
 	<input type="hidden" id="{{ id }}" name="{{ id }}" value=""/>
 </div>
+{% if rtl is defined %}
+    </div>
+{% endif %}
