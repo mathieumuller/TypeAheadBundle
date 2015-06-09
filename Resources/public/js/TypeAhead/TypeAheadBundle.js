@@ -35,6 +35,12 @@ var TypeAheadBundle = {
             $(this).parent().find("input[type=hidden]").val("");
             $(value_input).trigger("typeahead_change");
         });
+        
+        $(".typeahead").on("change", function() {
+            if (!$(this).val().length) {
+                $(".typeahead").removeClass("typeAheadError");
+            }
+        });
 
         $(display_input).typeahead({
                 hint: true,
