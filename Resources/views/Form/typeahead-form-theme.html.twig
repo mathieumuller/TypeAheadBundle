@@ -1,19 +1,25 @@
 <!-- AUTOCOMPLETE -->
 {% block typeahead_widget %}
     {% spaceless %}
-		<div class="input-group">
-			<input type="hidden" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value.id }}" {% endif %}/>
-	        {% set attr = attr|merge({'class': ((attr.class|default('') ~ ' typeahead form-control')|trim)}) %}
-	        {% set  id = id ~ "_typeahead" %}
-	        {% set  full_name = "typeahead_" ~ full_name  %}
-	        <input type="text" {{ block('widget_attributes') }} 
-	            {% if value is not empty %}
-	                value="{{ attribute(value, attr.display) }}" 
-	            {% endif %}
-                />
-	        <span class="input-group-addon tt-eraser">
-                <span class="glyphicon glyphicon-erase"></span>
-            </span>
+    	{% if attr.rtl is defined %}
+    	    <div class="rtl-support">
+    	{% endif %}
+	<div class="input-group">
+		<input type="hidden" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value.id }}" {% endif %}/>
+        	{% set attr = attr|merge({'class': ((attr.class|default('') ~ ' typeahead form-control')|trim)}) %}
+        	{% set  id = id ~ "_typeahead" %}
+        	{% set  full_name = "typeahead_" ~ full_name  %}
+        	<input type="text" {{ block('widget_attributes') }} 
+            	{% if value is not empty %}
+                	value="{{ attribute(value, attr.display) }}" 
+            	{% endif %}
+        	/>
+        	<span class="input-group-addon tt-eraser">
+        		<span class="glyphicon glyphicon-erase"></span>
+    		</span>
         </div>
+        {% if attr.rtl is defined %}
+    	    </div>
+    	{% endif %}
     {% endspaceless %}
 {% endblock typeahead_widget %}
