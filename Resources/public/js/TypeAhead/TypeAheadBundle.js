@@ -20,13 +20,31 @@ var TypeAheadBundle = {
         };
     },
 
+    getEntityByDisplay: function(dataset, display_value, value_input) {
+        $.each(dataset, function(i, data) {
+            if (data.displayed_value == display_value) {
+
+                value_input.val(data.selected_value);
+                return;
+            }
+
+            return;
+        });
+    },
+
     typeAheadProcessor :function(dataset, value_input, onSelectFunction) {
         var display_input = $(value_input).parent().find(".typeahead");
 
-        $(display_input).on("keyup", function(){
+        display_input.on("keyup", function(e){
             if (! $(value_input).val()) {
-                $(display_input).addClass("typeAheadError");
+                display_input.addClass("typeAheadError");
             }
+        });
+
+        $(display_input).on("blur", function(e){
+            TypeAheadBundle.getEntityByDisplay(dataset, display_input.val(), $(value_input));
+            display_input.removeClass("typeAheadError");
+            display_input.addClass("typeAheadOk");
         });
 
         $(".tt-eraser").on("click", function(e){
@@ -35,7 +53,7 @@ var TypeAheadBundle = {
             $(this).parent().find("input[type=hidden]").val("");
             $(value_input).trigger("typeahead_change");
         });
-        
+
         $(".typeahead").on("change", function() {
             if (!$(this).val().length) {
                 $(".typeahead").removeClass("typeAheadError");
@@ -55,8 +73,8 @@ var TypeAheadBundle = {
             //return id in an input hidden
             $(value_input).val(datum.value);
             $(value_input).trigger("typeahead_change");
-            $(display_input).removeClass("typeAheadError");
-            $(display_input).addClass("typeAheadOk");
+            display_input.removeClass("typeAheadError");
+            display_input.addClass("typeAheadOk");
 
             if (typeof(onSelectFunction) == "function") {
                 onSelectFunction();
