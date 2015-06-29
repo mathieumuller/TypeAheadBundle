@@ -3,7 +3,7 @@
 {% endif %}
 <div class="input-group input-group-sm">
 	<input class="typeahead form-control" type="text" placeholder="{{ placeholder }}" {% if display_value is defined %}value="{{ display_value }}"{% endif %}>
-	<span class="input-group-addon btn btn-default tt-eraser">
+	<span class="input-group-addon tt-eraser">
 		<span class="glyphicon glyphicon-erase"></span>
 	</span>
 	<input type="hidden" id="{{ id }}" name="{{ id }}" {% if id_value is defined %}value="{{ id_value }}"{% else %}value=""{% endif %}/>
