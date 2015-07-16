@@ -43,8 +43,14 @@ var TypeAheadBundle = {
 
         $(display_input).on("blur", function(e){
             TypeAheadBundle.getEntityByDisplay(dataset, display_input.val(), $(value_input));
-            display_input.removeClass("typeAheadError");
-            display_input.addClass("typeAheadOk");
+            if ($(value_input).val().length) {
+                display_input.removeClass("typeAheadError");
+                display_input.addClass("typeAheadOk");
+
+                if(!$(display_input).val().length) {
+                    display_input.removeClass("typeAheadError");
+                }
+            }
         });
 
         $(".tt-eraser").on("click", function(e){
