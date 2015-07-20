@@ -15,7 +15,11 @@
             	{% endif %}
         	/>
         	<span class="input-group-addon tt-eraser">
-        		<span class="glyphicon glyphicon-erase"></span>
+        	    {% if attr.erase_icon is defined %}	
+        	        <i class="glyphicon glyphicon-erase"></i>
+        	    {% else %}
+        	    	<span style='font-weight:bold'>X</span>
+        	    {% endif %}
     		</span>
         </div>
         {% if attr.rtl is defined and attr.rtl is not empty %}
