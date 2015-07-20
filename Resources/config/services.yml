@@ -1,3 +1,5 @@
+parameters:
+    matm.dataset_maker.class: MatM\Bundle\TypeAheadBundle\Services\TypeAheadDataBuilder
 services:
     matm.typeahead_transformer:
         class: MatM\Bundle\TypeAheadBundle\Form\DataTransformer\TypeAheadTransformer
@@ -10,4 +12,4 @@ services:
             - { name: form.type, alias: typeahead }
 
     matm.dataset_maker:
-        class: MatM\Bundle\TypeAheadBundle\Services\TypeAheadDataBuilder
+        class: %matm.dataset_maker.class%
