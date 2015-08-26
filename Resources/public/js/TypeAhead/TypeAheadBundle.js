@@ -82,15 +82,15 @@ var TypeAheadBundle = {
             display_input.removeClass("typeAheadError");
             display_input.addClass("typeAheadOk");
 
-            if (typeof(onSelectFunction) == "function") {
-                onSelectFunction();
-            }
-
         }).bind("typeahead:open", function(){
             // reinitialize the input hidden
             $(value_input).val("");
             $(value_input).trigger("typeahead_change");
             $(display_input).removeClass("typeAheadOk");
+        });
+        
+        $(value_input).on("typeahead_change", function(){
+            onSelectFunction();
         });
     }
 };
