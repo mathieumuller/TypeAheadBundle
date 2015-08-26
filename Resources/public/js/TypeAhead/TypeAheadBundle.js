@@ -85,7 +85,6 @@ var TypeAheadBundle = {
         }).bind("typeahead:open", function(){
             // reinitialize the input hidden
             $(value_input).val("");
-            $(value_input).trigger("typeahead_change");
             $(display_input).removeClass("typeAheadOk");
         });
         
