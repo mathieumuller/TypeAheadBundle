@@ -89,7 +89,9 @@ var TypeAheadBundle = {
         });
         
         $(value_input).on("typeahead_change", function(){
-            onSelectFunction();
+            if (typeof(onSelectFunction) == "function") {
+                onSelectFunction();
+            }
         });
     }
 };
