@@ -10,7 +10,7 @@
 			<span style='font-weight:bold'>X</span>
 		{% endif %}
 	</span>
-	<input type="hidden" id="{{ id }}" name="{{ id }}" {% if id_value is defined %}value="{{ id_value }}"{% else %}value=""{% endif %}/>
+	<input type="text" id="{{ id }}" name="{{ id }}" value="{{  id_value is defined ? id_value }}" class='hidden'/>
 </div>
 {% if rtl is defined and rtl is not empty %}
     </div>
